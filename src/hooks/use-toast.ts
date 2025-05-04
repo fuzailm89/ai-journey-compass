@@ -1,3 +1,4 @@
+
 import * as React from "react"
 
 import type {
@@ -90,8 +91,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId)
       } else {
@@ -125,6 +124,53 @@ export const reducer = (state: State, action: Action): State => {
       }
   }
 }
+
+// Create context for toast
+const ToastContext = React.createContext<{
+  toasts: ToasterToast[];
+  toast: (props: Toast) => { id: string; dismiss: () => void; update: (props: ToasterToast) => void };
+  dismiss: (toastId?: string) => void;
+} | null>(null);
+
+// Create a provider component
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
+  const [state, setState] = React.useState<State>({ toasts: [] });
+
+  React.useEffect(() => {
+    const listener = (updatedState: State) => {
+      setState(updatedState);
+    };
+    
+    listeners.push(listener);
+    return () => {
+      const index = listeners.indexOf(listener);
+      if (index > -1) {
+        listeners.splice(index, 1);
+      }
+    };
+  }, []);
+
+  return (
+    <ToastContext.Provider value={{ 
+      toasts: state.toasts, 
+      toast, 
+      dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }) 
+    }}>
+      {children}
+    </ToastContext.Provider>
+  );
+};
+
+// Create a hook to use the context
+export const useToast = () => {
+  const context = React.useContext(ToastContext);
+  
+  if (!context) {
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+  
+  return context;
+};
 
 const listeners: Array<(state: State) => void> = []
 
@@ -168,24 +214,3 @@ function toast({ ...props }: Toast) {
   }
 }
 
-function useToast() {
-  const [state, setState] = React.useState<State>(memoryState)
-
-  React.useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
-      }
-    }
-  }, [state])
-
-  return {
-    ...state,
-    toast,
-    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
-  }
-}
-
-export { useToast, toast }
