@@ -32,6 +32,7 @@ const Navbar = () => {
         <div className="hidden md:flex md:items-center md:space-x-8">
           <Link to="/" className="text-sm font-medium hover:text-brand-purple transition-colors">Home</Link>
           <Link to="/quiz" className="text-sm font-medium hover:text-brand-purple transition-colors">Quiz</Link>
+          <Link to="/pricing" className="text-sm font-medium hover:text-brand-purple transition-colors">Pricing</Link>
           <Link to="/about" className="text-sm font-medium hover:text-brand-purple transition-colors">About</Link>
           <Button asChild>
             <Link to="/quiz">Start Assessment</Link>
@@ -45,6 +46,7 @@ const Navbar = () => {
           <div className="container mx-auto py-4 px-4 space-y-3">
             <Link to="/" className="block text-sm font-medium hover:text-brand-purple transition-colors" onClick={toggleMenu}>Home</Link>
             <Link to="/quiz" className="block text-sm font-medium hover:text-brand-purple transition-colors" onClick={toggleMenu}>Quiz</Link>
+            <Link to="/pricing" className="block text-sm font-medium hover:text-brand-purple transition-colors" onClick={toggleMenu}>Pricing</Link>
             <Link to="/about" className="block text-sm font-medium hover:text-brand-purple transition-colors" onClick={toggleMenu}>About</Link>
             <Button asChild className="w-full mt-2">
               <Link to="/quiz" onClick={toggleMenu}>Start Assessment</Link>
