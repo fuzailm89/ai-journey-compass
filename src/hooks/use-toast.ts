@@ -126,11 +126,13 @@ export const reducer = (state: State, action: Action): State => {
 }
 
 // Create context for toast
-const ToastContext = React.createContext<{
+type ToastContextType = {
   toasts: ToasterToast[];
   toast: (props: Toast) => { id: string; dismiss: () => void; update: (props: ToasterToast) => void };
   dismiss: (toastId?: string) => void;
-} | null>(null);
+};
+
+const ToastContext = React.createContext<ToastContextType | null>(null);
 
 // Create a provider component
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
@@ -150,14 +152,16 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  return (
-    <ToastContext.Provider value={{ 
-      toasts: state.toasts, 
-      toast, 
-      dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }) 
-    }}>
-      {children}
-    </ToastContext.Provider>
+  const contextValue: ToastContextType = {
+    toasts: state.toasts,
+    toast,
+    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId })
+  };
+
+  return React.createElement(
+    ToastContext.Provider,
+    { value: contextValue },
+    children
   );
 };
 
@@ -213,4 +217,3 @@ function toast({ ...props }: Toast) {
     update,
   }
 }
-
