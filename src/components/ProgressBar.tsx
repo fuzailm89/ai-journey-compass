@@ -13,11 +13,11 @@ const ProgressBar = ({ currentStep, totalSteps }: ProgressBarProps) => {
     <div className="w-full">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-muted-foreground">Question {currentStep} of {totalSteps}</span>
-        <span className="text-sm font-medium text-brand-purple">{progress}%</span>
+        <span className="text-sm font-medium text-brand-blue">{progress}%</span>
       </div>
       <div className="w-full bg-secondary rounded-full h-2.5">
         <div 
-          className="bg-brand-purple h-2.5 rounded-full transition-all duration-300 ease-in-out"
+          className="bg-brand-blue h-2.5 rounded-full transition-all duration-300 ease-in-out"
           style={{ width: `${progress}%` }}
         />
       </div>

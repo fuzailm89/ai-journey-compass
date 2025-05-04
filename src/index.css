@@ -7,42 +7,42 @@
 
 @layer base {
   :root {
-    --background: 260 60% 99%;
-    --foreground: 240 10% 20%;
+    --background: 210 60% 99%;
+    --foreground: 220 10% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 20%;
+    --card-foreground: 220 10% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 20%;
+    --popover-foreground: 220 10% 20%;
 
-    --primary: 255 92% 76%;
-    --primary-foreground: 255 100% 100%;
+    --primary: 220 92% 65%;
+    --primary-foreground: 220 100% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 20%;
+    --secondary: 220 5% 96%;
+    --secondary-foreground: 220 10% 20%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
+    --muted: 220 5% 96%;
+    --muted-foreground: 220 4% 46%;
 
-    --accent: 262 83% 96%;
-    --accent-foreground: 260 60% 50%;
+    --accent: 222 83% 96%;
+    --accent-foreground: 220 60% 50%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 262 83% 76%;
+    --border: 220 6% 90%;
+    --input: 220 6% 90%;
+    --ring: 222 83% 76%;
 
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-foreground: 220 5.3% 26.1%;
+    --sidebar-primary: 220 5.9% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent: 220 4.8% 95.9%;
+    --sidebar-accent-foreground: 220 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -66,8 +66,8 @@
   .hero-gradient {
     background: linear-gradient(
       135deg,
-      theme('colors.brand.light-purple') 0%,
-      theme('colors.brand.light-blue') 100%
+      theme('colors.brand.light-blue') 0%,
+      theme('colors.brand.blue') 100%
     );
   }
 }

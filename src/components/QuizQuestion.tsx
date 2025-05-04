@@ -49,14 +49,18 @@ const QuizQuestion = ({ question, onAnswer, isCurrentQuestion }: QuizQuestionPro
       
       <RadioGroup value={selectedAnswer || ""} onValueChange={handleSelection} className="space-y-3">
         {question.answers.map((answer) => (
-          <div key={answer.id} className="flex items-start space-x-2 border rounded-lg p-4 hover:border-brand-purple hover:bg-accent/20 transition-colors cursor-pointer">
+          <div 
+            key={answer.id} 
+            className="flex items-start space-x-2 border rounded-lg p-4 hover:border-brand-blue hover:bg-accent/20 transition-colors cursor-pointer"
+            onClick={() => handleSelection(answer.id)}
+          >
             <RadioGroupItem value={answer.id} id={answer.id} className="mt-1" />
             <div className="grid gap-1.5 w-full">
               <Label 
                 htmlFor={answer.id} 
                 className={cn(
                   "text-base font-medium cursor-pointer w-full", 
-                  selectedAnswer === answer.id && "text-brand-purple"
+                  selectedAnswer === answer.id && "text-brand-blue"
                 )}
               >
                 {answer.text}
